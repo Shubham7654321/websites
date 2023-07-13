@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="stylo.css">
+
+  <script>
+    function validateForm() {
+      // Get form values
+      var userId = document.forms["registrationForm"]["userId"].value;
+      var password = document.forms["registrationForm"]["password"].value;
+      var name = document.forms["registrationForm"]["name"].value;
+      var address = document.forms["registrationForm"]["address"].value;
+      var country = document.forms["registrationForm"]["country"].value;
+      var zipCode = document.forms["registrationForm"]["zipCode"].value;
+      var email = document.forms["registrationForm"]["email"].value;
+      var gender = document.forms["registrationForm"]["gender"].value;
+      var language = document.forms["registrationForm"]["language"].value;
+      var about = document.forms["registrationForm"]["about"].value;
+
+      // Validate User ID field
+      if (userId === "") {
+        alert("User ID is required");
+        return false;
+      }
+
+      if (userId.length < 5 || userId.length > 12) {
+        alert("User ID must be between 5 and 12 characters long");
+        return false;
+      }
+
+      // Validate Password field
+      if (password === "") {
+        alert("Password is required");
+        return false;
+      }
+
+      if (password.length < 7 || password.length > 12) {
+        alert("Password must be between 7 and 12 characters long");
+        return false;
+      }
+
+      // Validate Name field
+      if (name === "") {
+        alert("Name is required");
+        return false;
+      }
+
+      var nameRegex = /^[a-zA-Z]+$/;
+      if (!name.match(nameRegex)) {
+        alert("Name must contain alphabets only");
+        return false;
+      }
+
+      // Validate ZIP Code field
+      if (zipCode !== "" && isNaN(zipCode)) {
+        alert("ZIP Code must be numeric only");
+        return false;
+      }
+
+      // Validate Email field
+      if (email === "") {
+        alert("Email is required");
+        return false;
+      }
+
+      var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if (!email.match(emailRegex)) {
+        alert("Please enter a valid email address");
+        return false;
+      }
+
+      // Validate Country field
+      if (country === "") {
+        alert("Please select a country");
+        return false;
+      }
+
+      // All validations passed
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <h2>Registration Form</h2>
+  <form name="registrationForm" onsubmit="return validateForm()">
+    <label for="userId">User ID:</label>
+    <input type="text" name="userId" id="userId"><br>
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password"><br>
+
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name"><br>
+
+    <label for="address">Address:</label>
+    <input type="text" name="address" id="address"><br>
+
+    <label for="country">Country:</label>
+    <select name="country" id="country">
+      <option value="">Please select a country</option>
+      <option value="USA">USA</option>
+      <option value="UK">UK</option>
+      <option value="Canada">INDIA</option>
+      <!-- Add more countries as needed -->
+    </select><br>
+
+    <label for="zipCode">ZIP Code:</label>
+    <input type="text" name="zipCode" id="zipCode"><br>
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email"><br>
+
+    <label for="gender">Gender:</label>
+    <input type="radio" name="gender" value="Male" id="male"> Male
+    <input type="radio" name="gender" value="Female" id="female"> Female<br>
+
+    <label for="language">Language:</label>
+    <input type="checkbox" name="language" value="English" id="english"> English
+    <input type="checkbox" name="language" value="Non-English" id="nonEnglish"> Non-English<br>
+
+    <label for="about">About:</label>
+    <textarea name="about" id="about"></textarea><br>
+
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
